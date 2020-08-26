@@ -50,8 +50,8 @@ class GraphConvolution(nn.Module):
             r_high = support
             
         output = theta*torch.mm(support, self.weight)+(1-theta)*r
-        output_high = theta*torch.mm(support_high, self.weight_high)+(1-theta)*r_high
-        output = (self.c*output + self.c_high*output_high) / (self.c+self.c_high)
+        #output_high = theta*torch.mm(support_high, self.weight_high)+(1-theta)*r_high
+        #output = (self.c*output + self.c_high*output_high) / (self.c+self.c_high)
         if self.residual:
             output = output+input
         return output
