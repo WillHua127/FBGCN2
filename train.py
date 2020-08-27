@@ -35,11 +35,11 @@ torch.manual_seed(args.seed)
 torch.cuda.manual_seed(args.seed)
 
 # Load data
-adj, features, labels,idx_train,idx_val,idx_test = load_citation(args.data)
-#cudaid = "cuda:"+str(args.dev)
-#device = torch.device(cudaid)
-#features = features.to(device)
-#adj = adj.to(device)
+adj, adj_high, features, labels,idx_train,idx_val,idx_test = load_citation(args.data)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+features = features.to(device)
+adj = adj.to(device)
+adj_high = adj_high.to(device)
 checkpt_file = 'pretrained/'+uuid.uuid4().hex+'.pt'
 print(cudaid,checkpt_file)
 
