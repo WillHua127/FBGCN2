@@ -41,7 +41,7 @@ features = features.to(device)
 adj = adj.to(device)
 adj_high = adj_high.to(device)
 checkpt_file = 'pretrained/'+uuid.uuid4().hex+'.pt'
-print(cudaid,checkpt_file)
+#print(cudaid,checkpt_file)
 
 model = GCNII(nfeat=features.shape[1],
                 nlayers=args.layer,
