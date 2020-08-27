@@ -102,7 +102,7 @@ def load_citation(dataset_str="cora"):
     idx_val = torch.LongTensor(idx_val)
     idx_test = torch.LongTensor(idx_test)
     adj = sys_normalized_adjacency(adj)
-    I = np.identity(g.shape[0], dtype=float)
+    I = np.identity(adj.shape[0], dtype=float)
     adj_high = sp.csr_matrix(I-adj)
     adj = sparse_mx_to_torch_sparse_tensor(adj)
     adj_high = sparse_mx_to_torch_sparse_tensor(adj_high)
