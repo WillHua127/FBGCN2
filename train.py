@@ -80,7 +80,7 @@ def test():
     model.load_state_dict(torch.load(checkpt_file))
     model.eval()
     with torch.no_grad():
-        output = model(features, adj)
+        output = model(features, adj, adj_high)
         loss_test = F.nll_loss(output[idx_test], labels[idx_test].to(device))
         acc_test = accuracy(output[idx_test], labels[idx_test].to(device))
         return loss_test.item(),acc_test.item()
