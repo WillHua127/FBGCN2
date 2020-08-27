@@ -60,7 +60,7 @@ optimizer = optim.Adam([
 def train():
     model.train()
     optimizer.zero_grad()
-    output = model(features,adj)
+    output = model(features,adj, adj_high)
     acc_train = accuracy(output[idx_train], labels[idx_train].to(device))
     loss_train = F.nll_loss(output[idx_train], labels[idx_train].to(device))
     loss_train.backward()
@@ -71,7 +71,7 @@ def train():
 def validate():
     model.eval()
     with torch.no_grad():
-        output = model(features,adj)
+        output = model(features,adj, adj_high)
         loss_val = F.nll_loss(output[idx_val], labels[idx_val].to(device))
         acc_val = accuracy(output[idx_val], labels[idx_val].to(device))
         return loss_val.item(),acc_val.item()
