@@ -167,7 +167,8 @@ def full_load_data(dataset_name, splits_file_path=None):
 
     g = sys_normalized_adjacency(g)
     I = np.identity(g.shape[0], dtype=float)
-    g_high = sp.csr_matrix(I-g)
-    g = sparse_mx_to_torch_sparse_tensor(g)
-    g_high = sparse_mx_to_torch_sparse_tensor(g_high)
+    adj = sp.csr_matrix(2*I+g)/2
+    adj_high = sp.csr_matrix(I-g)/2
+    g = sparse_mx_to_torch_sparse_tensor(adj)
+    g_high = sparse_mx_to_torch_sparse_tensor(adj_high)
     return g, g_high, features, labels, train_mask, val_mask, test_mask, num_features, num_labels
