@@ -28,9 +28,9 @@ def normalize(mx):
 
 def sys_normalized_adjacency(adj):
    adj = sp.coo_matrix(adj)
-   adj = adj + sp.eye(adj.shape[0])
+   #adj = adj + sp.eye(adj.shape[0])
    row_sum = np.array(adj.sum(1))
-   row_sum=(row_sum==0)*1+row_sum
+   #row_sum=(row_sum==0)*1+row_sum
    d_inv_sqrt = np.power(row_sum, -0.5).flatten()
    d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0.
    d_mat_inv_sqrt = sp.diags(d_inv_sqrt)
