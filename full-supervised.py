@@ -57,9 +57,9 @@ def validate_step(model,features,labels,adj,adj_high,idx_val):
         output = model(features,adj,adj_high)
         loss_val = F.nll_loss(output[idx_val], labels[idx_val].to(device))
         acc_val = accuracy(output[idx_val], labels[idx_val].to(device))
-        c,c_high = model.c_value()
-        print('c:',c.item())
-        print('c_high:',c_high.item())
+        #c,c_high = model.c_value()
+        #print('c:',c.item())
+        #print('c_high:',c_high.item())
         return loss_val.item(),acc_val.item()
 
 def test_step(model,features,labels,adj,adj_high,idx_test):
