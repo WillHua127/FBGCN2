@@ -17,6 +17,7 @@ class GraphConvolution(nn.Module):
 
         self.out_features = out_features
         self.residual = residual
+        self.act = nn.ReLU()
         self.weight = Parameter(torch.FloatTensor(self.in_features,self.out_features))
         self.weight_high = Parameter(torch.FloatTensor(self.in_features,self.out_features))
         self.c = nn.Parameter(torch.zeros(size=(1, 1)))
@@ -36,6 +37,8 @@ class GraphConvolution(nn.Module):
         theta = math.log(lamda/l+1)
         hi = torch.spmm(adj, input)
         hi_high = torch.spmm(adj_high, input)
+        hi = self.act(hi)
+        hi_high = self.act(hi_high)
         if self.variant:
             support = torch.cat([hi,h0],1)
             r = (1-alpha)*hi+alpha*h0
