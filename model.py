@@ -37,8 +37,8 @@ class GraphConvolution(nn.Module):
         theta = math.log(lamda/l+1)
         hi = torch.spmm(adj, input)
         hi_high = torch.spmm(adj_high, input)
-        hi = self.act(hi)
-        hi_high = self.act(hi_high)
+        #hi = self.act(hi)
+        #hi_high = self.act(hi_high)
         if self.variant:
             support = torch.cat([hi,h0],1)
             r = (1-alpha)*hi+alpha*h0
